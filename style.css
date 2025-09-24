@@ -1,0 +1,309 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Animated gradient background */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* was center */
+  overflow-y: auto; /* allow vertical scroll */
+  overflow-x: hidden;
+  color: #fff;
+  padding: 2rem 1rem; /* spacing around container */
+  background: linear-gradient(-45deg, #1f1c2c, #0b0c10, #2b2d42, #1a1a2e);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+}
+
+/* Star layers (parallax) */
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Different star layers with different speeds */
+.stars {
+  box-shadow: 200px 300px white, 500px 600px white, 800px 200px white,
+    1200px 700px white, 1600px 400px white, 1900px 900px white;
+  animation: twinkle 5s infinite ease-in-out alternate;
+}
+.stars2 {
+  box-shadow: 150px 100px white, 400px 800px white, 700px 500px white,
+    1000px 300px white, 1400px 600px white, 1700px 1200px white;
+  animation: twinkle 7s infinite ease-in-out alternate;
+}
+.stars3 {
+  box-shadow: 250px 900px white, 600px 200px white, 900px 700px white,
+    1300px 500px white, 1600px 100px white, 1850px 800px white;
+  animation: twinkle 10s infinite ease-in-out alternate;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Twinkle animation */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Game container with glass effect */
+.game-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column; /* stack elements */
+  justify-content: space-between; /* push resetBtn to bottom */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1.8rem 2.5rem;
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  max-width: 650px;
+  width: 95%;
+  min-height: 80vh; /* keeps it tall enough */
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.game-container:hover {
+  transform: translateY(-5px);
+}
+
+/* Title */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(79, 172, 254, 0.8);
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.score {
+  flex: 1;
+  min-width: 100px;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.human-score {
+  border: 1px solid #06d6a0;
+  color: #06d6a0;
+}
+.computer-score {
+  border: 1px solid #ef476f;
+  color: #ef476f;
+}
+.tie-score {
+  border: 1px solid #ffd166;
+  color: #ffd166;
+}
+
+/* Choices */
+.choices {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.choice {
+  flex: 1;
+  min-width: 120px;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #2b5876, #4e4376);
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.choice:hover {
+  transform: translateY(-6px) scale(1.05);
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Round picks (cards) */
+.round-picks {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pick-card {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.pick-card span {
+  font-size: 2.8rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.bounce {
+  animation: bounce 0.4s ease;
+}
+
+/* Results */
+.results p {
+  font-size: 1.3rem;
+  margin: 0.4rem 0;
+}
+
+#roundResult {
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#finalResult {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* Try Again button */
+#resetBtn {
+  display: none;
+  margin-top: auto; /* pushes it to bottom */
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+#resetBtn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #dd2476, #ff512f);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .choices {
+    flex-direction: column;
+  }
+  .choice {
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+  .round-picks {
+    flex-direction: column;
+  }
+  .pick-card {
+    min-height: 100px;
+    padding: 0.8rem;
+  }
+  .pick-card span {
+    font-size: 2.2rem;
+  }
+  #roundResult {
+    font-size: 1.1rem;
+  }
+  #finalResult {
+    font-size: 1.3rem;
+  }
+}
