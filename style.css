@@ -265,7 +265,22 @@ h1 {
   transform: translateY(-3px) scale(1.05);
   background: linear-gradient(135deg, #dd2476, #ff512f);
 }
-
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 20px;
+}
+.footer-socials a {
+  color: white;
+  font-size: 1.5rem;
+}
 /* Animations */
 @keyframes fadeIn {
   from {
